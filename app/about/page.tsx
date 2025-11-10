@@ -60,8 +60,48 @@ export default function AboutPage() {
 
         <h2>Let's Connect</h2>
         <p>
-          If you want to talk about anything feel free to reach out.
+          If you want to talk about anything feel free to reach out:
         </p>
+        <ul>
+          <li>
+            <a
+              href="https://github.com/saritepe"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#3b82f6] hover:underline"
+            >
+              GitHub
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://linkedin.com/in/ugur-saritepe"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#3b82f6] hover:underline"
+            >
+              LinkedIn
+            </a>
+          </li>
+          <li>
+            <a
+              href="mailto:info@ugursaritepe.com"
+              className="text-[#3b82f6] hover:underline"
+            >
+              Email: info@ugursaritepe.com
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://discord.gg/gdFUuY3dfU"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#3b82f6] hover:underline"
+            >
+              Discord
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
   );
