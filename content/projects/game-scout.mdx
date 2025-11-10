@@ -1,0 +1,86 @@
+---
+title: "Game Scout"
+summary: "Advanced game search and filtering platform with smart categorization and ordering"
+status: "active"
+startDate: "2024-03-15" 
+lastUpdated: "2025-11-08"
+tech: ["Next.js", "Python", "PostgreSQL", "Playwright"]
+demo: "https://game-scout.app"
+featured: true
+futureGoals:
+  - "Add semantic search capabilities"
+  - "Add user authentication and personalized recommendations"
+  - "Fix mobile app"
+  - "Add game price tracking and alerts"
+  - "Integrate with Steam, Epic Games, and PlayStation Store APIs"
+updates:
+  - date: "2025-09-10"
+    description: "Created a web app with logical filters intead of llm"
+  - date: "2025-08-23"
+    description: "Initial launch with llm wrapper to search games as mobile ios app"
+---
+
+## Overview
+
+Game Scout is a tool to search games. Instead of relying just genres, it has 
+AI powered tags, themes and mechanics that lets users to find games. Also included
+smart ranking system that calculates from rate and rate count together.
+
+## The Problem
+
+Traditional game search platforms only match exact keywords. If you search 
+for "medical games," you might only get games with "medical" in the title, 
+missing out on surgery simulators, hospital management games, and health 
+education titles.
+
+## The Solution
+
+Game Scout uses advanced categorization:
+
+- **Search**: Find tag, theme, mecanics or description
+- **Ordering**: Order games with weighted rating algorithm
+- **Advanced Filters**: Combine co-op mode, player count, difficulty, and specific mechanics
+- **Plus Mode**: Find games that support specific features like local co-op, split-screen
+
+## Key Features
+
+### Advanced Filters
+- **Player Modes**: Single-player, co-op, local-multiplayer etc.
+- **Game Mechanics**: story-driven, crafting, turn-based, stealth
+- **Plus Filters**: Included in PS Plus, Extra or Free games
+
+### Smart Ranking System
+- **Weighted Rating Algorithm**: Uses both rating score and rating count to find truly great games
+- Prevents high-rated games with only few reviews from dominating results
+- Balances popularity with quality to surface hidden gems
+- Customizable sorting by best-rated, most popular, or balanced score
+
+### Smart Categorization
+- Automatically categorizes games into 50+ mechanics and themes
+- Games can belong to multiple categories
+- Genre-blending discovery (find games that mix your favorite styles)
+
+### Precise Discovery
+Combine multiple filters to find exactly what you want:
+- "4-player local co-op puzzle games"
+- "Story-driven action games"
+- "Medical simulation games"
+
+## Technical Highlights
+
+- **Frontend**: Next.js
+- **Backend**: Python
+- **Database**: Postgres
+- **Scraping**: Playwright
+- **Tagging**: OpenAI
+
+## Current Status
+
+The app is active, but there is no user at all right now. I am trying to 
+get some users and feedback about it.
+
+## What's Next
+
+- Get User ( I have no idea how)
+- Semantic Search
+- Other Platforms
