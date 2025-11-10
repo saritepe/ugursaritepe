@@ -28,23 +28,16 @@ export default function Home() {
             <h1 className="text-4xl md:text-5xl font-bold text-[#111827] mb-6 leading-tight">
               Hey, I'm Uğur Sarıtepe!
             </h1>
-            <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
-              I'm a developer, I enjoy creating apps.
-              I have been working in data field for last 8 years. Mostly working with
-              Python and data platforms. 
+            <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-4">
+              I am a software engineer who loves to build apps for 8 years. I will 
+              try to share what I build and how I do it.
             </p>
-            <br></br>
-            <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
-              I will try to learn how to write and document in this blog. Meanwhile
-              hopefully I can share some knowledge and show what I built. I will try
-              to include how to documents or at least show how I did.  
-            </p>
-            <br></br>
-            <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
-               I will try to not use AI for articles.
-              but I am using a lot on my projects. Specially frontend is generally coming
-              from Claude Code.
-            </p>
+            <Link
+              href="/about"
+              className="text-[#3b82f6] hover:underline font-medium"
+            >
+              More about me →
+            </Link>
           </div>
         </div>
       </section>
