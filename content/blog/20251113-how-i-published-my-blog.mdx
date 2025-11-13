@@ -1,0 +1,76 @@
+---
+title: "How I Published My Blog"
+date: "2025-11-13"
+excerpt: "Deploy and publish with Vercel."
+tags: ["deployment", "Vercel", Next.js, "ugursaritepe"]
+draft: false
+---
+
+# App Deployment
+
+I always thought it is hard to serve or publish something.
+At least it was hard when I try to deploy backend apps.
+Need to rent a server or cloud and setup all the dependencies, 
+then setup the networking create a public ip etc. But for next.js apps
+I would say it is pretty easy. You just need vercel account and you can
+setup pretty fast with command line tool. Which asks you just a couple
+questions then actually setup everything for you automatically and serve
+it via public ip address so you can also share with anyone. Bonus it is
+free for the people like me (who does not have a lot of users)
+
+
+## Step 1: First Deployment
+So first step is creating account which I don't remember when I did how I did.
+But my account is hobby account and I have 4-5 hobby projects. As long as you 
+don't have a lot of traffic you can just use hobby. 
+
+Normally I use npx to use vercel commands instead of installing but if you want
+to use directly you can also install with 
+
+```
+npm install -g vercel
+```
+
+Then you can use vercel commands from your cli directly but I use npx instead.
+
+To initialize my project with vercel I use :
+
+```
+npx vercel init
+```
+
+Then it asks bunch of question and you need to login with your account but it 
+creates .vercel file in your directory with some id to be able access it later on.
+
+For delpoyment it is enough to just write:
+
+```
+npx vercel
+```
+
+For deployment vercel has nice feature it is deploying a test server and you can 
+actually check how is it and you can deploy prod with:
+
+```
+npx vercel --prod
+```
+
+Basically that is it. You will have an app with this command in production and
+it will print production dns with something-something.vercel.app
+You can check you website and share with anyone. 
+
+If you want to check [more] (https://vercel.com/docs)
+
+I know that this is actually pretty simple and maybe not something learn like a 
+tutorial but I think it is important to know that is easy. If you have a idea 
+or app you can just publish it!
+
+## What's Next
+
+I would like to also add how I add domain for ugursaritepe and how did I share with
+search engine like google. 
+
+
+---
+
+Let's connect!
