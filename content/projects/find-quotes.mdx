@@ -1,0 +1,61 @@
+---
+title: "Find Quotes"
+summary: "Quote discovery platform with emotion-based search, artist filtering, and custom image generation"
+status: "active"
+startDate: "2025-03-30"
+lastUpdated: "2025-12-20"
+tech: ["Next.js", "Vercel"]
+demo: "https://find-quotes.com"
+featured: true
+futureGoals:
+  - "Get actual users first"
+  - "Add RAG-based semantic search when user base justifies resources"
+  - "Implement AI image generation to match quotes"
+  - "Expand quote database significantly"
+updates:
+  - date: "2025-12-20"
+    description: "Added seo for all quotes and resubmit sitemap to google and bing"
+  - date: "2025-09-20"
+    description: "Rebuilt as lightweight Next.js app with file-based quotes and image creation features"
+  - date: "2025-03-30"
+    description: "Initial version with RAG and semantic search (archived due to resource usage)"
+---
+
+## Overview
+
+Find Quotes is a quote discovery platform that helps users find the perfect quote through emotion tags, artist filtering, and exact text matching. It includes a custom image generator to create shareable quote graphics.
+
+## The Problem
+
+The initial version used RAG (Retrieval-Augmented Generation) with in-memory embedding models for semantic search. While powerful, it consumed excessive resources since everything ran in-memory without external embedding services. Without real users, the infrastructure costs couldn't be justified.
+
+## The Solution
+
+Rebuilt as a lean Next.js application deployed on Vercel:
+
+- **File-based Storage**: Quotes stored in static files for zero database overhead
+- **Multiple Search Methods**: Emotion tags, artist filtering, and exact text matching
+- **Image Creation**: Custom quote graphics with 6 template options
+- **Serverless Architecture**: Pay-per-use model that scales with actual usage
+
+## Key Features
+
+### Search & Discovery
+- **Emotion Tags**: Find quotes by mood (inspirational, melancholic, motivational, etc.)
+- **Artist Filter**: Browse quotes from specific authors
+- **Text Search**: Exact string matching for finding specific phrases
+
+### Image Generator
+- **6 Template Options**: Choose from different visual styles
+- **Quote Placement**: Position text on images for optimal readability
+- **Download**: Export custom quote images for sharing
+
+## Technical Highlights
+
+- **Frontend**: Next.js for fast, SEO-friendly rendering
+- **Deployment**: Vercel for serverless hosting
+- **Design**: Lightweight, cost-effective architecture
+
+## Current State
+
+The app is live and functional at find-quotes.com with a curated collection of example quotes. The focus is on getting users first before investing in advanced features.
