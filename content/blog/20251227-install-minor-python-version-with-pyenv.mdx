@@ -1,0 +1,146 @@
+---
+title: "Installing and Managing Minor Python Versions with Pyenv"
+date: "2025-12-27"
+excerpt: "A practical guide to installing specific Python versions and switching between them using pyenv."
+tags: ["python", "pyenv", "version-management", "minor-version"]
+draft: false
+---
+
+As a Data Platform Engineer I have to work with different versions of Python all the time. Sometimes I need to 
+pin minor version of Python so all the libraries and functionalities can work together without issue. 
+Also sometime I would like to try out new capabilities and test new functionalities like 3.13t no-gil version.
+
+
+## Prerequisites
+
+I've already installed pyenv using Homebrew and resolved the common installation issues.
+If you haven't set up pyenv yet or encountered errors, check out my [pyenv troubleshooting guide](/blog/pyenv-install-ubuntu-troubleshooting).
+Also you can check their [official documentation](https://github.com/pyenv/pyenv/blob/master/README.md) for installation instructions on each platform.
+
+**My setup:**
+- **OS**: Ubuntu 24.04.3 LTS
+- **Pyenv version**: 2.6.17
+
+## Finding Available Python Versions
+
+You can find all the available versions with this command. I don't even know most of them. 
+To be honest I used minor versioning like 3.11.11 or experiment version like 3.13t. 
+List all available Python versions:
+```bash
+pyenv install --list
+```
+This will return huge list of versions.
+
+## Installing a Specific Python Version
+
+{/* Show the basic install command */}
+
+For example we can install 3.12.7 with this command:
+```bash
+pyenv install 3.12.7
+```
+
+or we can install no-gil version with 3.13t:
+```bash
+pyenv install 3.13t
+```
+
+When you ran the command it will show something like this 
+
+```bash
+Downloading Python-3.12.7.tar.xz...
+-> https://www.python.org/ftp/python/3.12.7/Python-3.12.7.tar.xz
+Installing Python-3.12.7...
+```
+
+and when finished it will show version and where it installed like this:
+```bash
+Installed Python-3.12.7 to /home/user/.pyenv/versions/3.12.7
+```
+
+## Checking Installed Versions
+
+We can list all the available versions in our system with:
+```bash
+pyenv versions
+```
+
+It will show something like this: 
+```bash
+* system (set by /home/user/.pyenv/version)
+  3.12.7
+  3.13.11
+  3.13.11t
+```
+In here * show us which one is active.
+
+## Setting Python Versions
+
+There are 3 option to use in pyenv. We can switch between global, local or shell.
+
+If we change the version on shell it will be active on just the shell session. 
+If we change it for local it means it will be changed for directory. 
+Lastly global change for every global usage of python defaultly.
+
+Personally I never used global version for long time. I never recommend it, if you don't 
+know what are you doing. Always use virtual environments. Change the version in shell or directory
+create a virtual environment and use that for your project.
+
+
+Change your directory to your projects directory.
+```bash
+cd ~/projects/my-project
+```
+
+Change your pyenv default version for directory ( Here you can also use shell command but shell command needs extra setup for shells so for simplicity we can use local instead for projects)
+```bash
+pyenv local 3.12.7
+```
+
+When you run this command it will create a .python-version file in the directory and it just 
+save the version name there.
+If you check current version with: 
+```bash
+pyenv versions
+```
+You should see the location of the asterisk (*) changed. 
+Now it is next to version you selected.
+
+Now we can check python version:
+```bash
+python --version
+```
+
+This should return the version we specified. 
+If not or giving error like 
+
+```bash
+Command 'python' not found, did you mean:
+  command 'python3' from deb python3
+  command 'python' from deb python-is-python3
+```
+
+This means shell integration is not set up. In their documentation there is a [section on setting up your shell environment](https://github.com/pyenv/pyenv?tab=readme-ov-file#b-set-up-your-shell-environment-for-pyenv) to integrate with pyenv.
+
+If you don't feel comfortable with this changes you can just run:
+```bash
+eval "$(pyenv init -)"
+```
+
+And from same shell you check again:
+```bash
+python --version
+```
+
+This should return your specified version.
+
+## Conclusion
+
+Pyenv is nice tool to be able install minor versions for python. It can be challenging to
+deal with bash settings but it can be used without it too. Just don't forget to activate 
+your virtual environments when you are installing additional dependencies to your Python
+environment.
+
+---
+
+Let's connect!
