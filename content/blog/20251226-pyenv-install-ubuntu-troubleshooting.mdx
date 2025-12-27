@@ -1,0 +1,99 @@
+---
+title: "Fixing Pyenv Install Errors on Ubuntu"
+date: "2025-12-26"
+excerpt: "Troubleshooting _decimal.cpython module errors and no modules when installing Python with pyenv on Ubuntu."
+tags: ["python", "pyenv", "ubuntu", "troubleshooting", "brew"]
+draft: false
+---
+
+I was trying to install specific version of python and decided to install pyenv for this purpose.
+After installing pyenv with brew I tried to install python but I started to get errors.
+I will try to show how I fix them.
+
+## System Information
+
+Here's my setup where I encountered this issue:
+
+- **OS**: Ubuntu 24.04.3 LTS
+- **Pyenv version**: 2.6.17
+- **Homebrew version**: 5.0.7
+- **Python version attempting to install**: 3.13t
+
+
+## The Problem
+
+I tried to install Python 3.13t (experimental no-GIL version) using pyenv on Ubuntu. 
+Normally I use pyenv in mac and I installed with brew and it was smooth. I did not 
+have any issues. 
+
+So I decided to go similar approach in my personal computer and install the pyenv with brew.
+
+First I installed pyenv with : 
+
+```bash
+brew install pyenv
+```
+
+Then tried to install Python 3.13t with pyenv:
+
+```bash
+pyenv install 3.13t
+```
+
+The installation failed with this error:
+
+```
+/usr/bin/install: cannot stat 'Modules/_decimal.cpython-313-x86_64-linux-gnu.so': No such file or directory
+make: *** [Makefile:2309: sharedinstall] Error 1
+```
+
+## First Attempt: Following the Documentation
+
+First I quickly checked the [pyenv issues page](https://github.com/pyenv/pyenv/issues) to see if anyone else had the same issue.
+I found [this related issue](https://github.com/pyenv/pyenv/issues/2823?timeline_page=1) that suggested unlinking pkg-config.
+
+I ran the unlink command:
+```bash
+brew unlink pkg-config
+```
+
+## Second Problem
+
+Now I had another error. This time I was missing libraries like readline, _sqlite3, tkinter, and _lzma.
+The installation was failing with "no module named _sqlite3" etc.
+
+
+## Second Attempt: Installing Dependencies
+
+When I saw that I was missing libraries, I checked the [pyenv build dependencies documentation](https://github.com/pyenv/pyenv/wiki#suggested-build-environment) again.
+
+I tried installing with brew first:
+```bash
+brew install openssl readline sqlite3 xz tcl-tk@8 libb2 zstd zlib pkgconfig
+```
+
+But my issue still wasn't resolved. So I decided to use the standard Ubuntu approach.
+
+I found the [Ubuntu section in the documentation](https://github.com/pyenv/pyenv/wiki#suggested-build-environment) and ran:
+```bash
+sudo apt update; sudo apt install make build-essential libssl-dev zlib1g-dev \
+libbz2-dev libreadline-dev libsqlite3-dev curl git \
+libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+```
+
+After the installation finished, I tried again:
+```bash
+pyenv install 3.13t
+```
+
+This time it worked!
+
+## Key Takeaways
+
+I started to feel like brew setup was not good for me. I did not have any issue
+working with macbook but in ubuntu I might have different setup. So I recommend 
+following standart ubuntu parts from documentation instead of brew.
+
+---
+
+Let's connect!
