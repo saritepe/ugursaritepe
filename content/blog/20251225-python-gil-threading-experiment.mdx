@@ -1,0 +1,182 @@
+---
+title: "Python GIL: Threading vs No-GIL Performance"
+date: "2025-12-25"
+excerpt: "Practical experiments proving GIL exists and testing Python's experimental no-GIL version."
+tags: ["python", "threading", "GIL", "performance", "experimental"]
+draft: false
+---
+
+# Python GIL: Does Threading Really Help?
+
+I was shocked when I learned that Python does not support threading actually. There
+is a global interpreter lock in the design of it so each time we want to do
+something with python it does only one thing at a time.
+
+The design choice was made at the time because most of the hardware did not have multi-core
+CPUs at the time and it was easier to implement everything. But right now there is almost
+no computer with a single-core CPU.
+
+## The Problem: CPU-Bound Tasks and Threading
+
+The problem is not about waiting for a process to finish until it ends but more like
+the power source we have is just one. This means if we need to write data to a file
+for example cpu can give the command of writing and we start writing to disk but while
+waiting for our storage disk completes its process we can do other things. This creates
+an illusion of multi-threading. But behind the scenes our python code just does some work and
+changes its job time to time. 
+
+On the other hand if we have a CPU-bound operation, for example if we calculate something
+and we wanted to have multi-threading GIL would not let us use different cores.
+
+
+## Prerequisites
+
+To run these experiments, you'll need both standard Python and Python's experimental no-GIL version (e.g., 3.13 and 3.13t).
+I prefer installing with pyenv because it was easy to install on Mac then I got used to it.
+
+Install standard version:
+```bash
+pyenv install 3.13
+```
+
+Install the no-GIL version:
+```bash
+pyenv install 3.13t
+```
+
+For detailed instructions on installing specific Python versions with pyenv, check out my guide on
+[installing minor Python versions with pyenv](/blog/install-minor-python-version-with-pyenv).
+
+## Experiment 1: Proving GIL Exists
+
+For example if we have a calculation that can be completed by one core within 4 seconds, it will be more
+or less done by 4 cores in 1 second. But we can't achieve this in normal python versions.
+Let's test this example.
+
+I will start initializing pyenv shell manually, if you already setup your shell configuration
+to run initializing command automatically you don't need to run it.
+
+You can also find this command when you run ```pyenv init``` command. It will print
+what to put inside shell configuration but we can also just use it while copying the code below.
+
+pyenv init:
+```bash
+eval "$(pyenv init - bash)"
+```
+
+```bash
+pyenv shell 3.13
+```
+
+
+Let's define cpu intensive task. It is just sum of squares.
+```python
+def cpu_work(n):
+    """CPU-intensive task: calculate sum of squares"""
+    total = 0
+    for i in range(n):
+        total += i * i
+    return total
+```
+
+Single threaded version
+```python
+def run_single_thread(iterations, n):
+    start = time.time()
+    for _ in range(iterations):
+        cpu_work(n)
+    return time.time() - start
+```
+
+
+Running multithread version.
+```python
+def run_multi_thread(iterations, n):
+    start = time.time()
+    threads = []
+    for _ in range(iterations):
+        t = threading.Thread(target=cpu_work, args=(n,))
+        t.start()
+        threads.append(t)
+    for t in threads:
+        t.join()
+    return time.time() - start
+```
+
+Main function to run everything and print time to understand how much time it took.
+```python
+if __name__ == "__main__":
+    print(f"Python {sys.version}")
+
+    iterations = 4
+    n = 10_000_000
+
+    single_time = run_single_thread(iterations, n)
+    multi_time = run_multi_thread(iterations, n)
+
+    print(f"\nSingle-threaded: {single_time:.3f}s")
+    print(f"Multi-threaded:  {multi_time:.3f}s")
+    print(f"Speedup:         {single_time / multi_time:.2f}x")
+```
+I named the file as main and run it with the active shell we have.
+```bash
+python main.py
+```
+
+### Results
+```bash
+Python 3.13.11 (main, Dec 26 2025, 13:56:05) [GCC 13.3.0]
+
+Single-threaded: 3.160s
+Multi-threaded:  3.488s
+Speedup:         0.91x
+```
+From results you can see it is slower in multi-thread version. It just changes
+depending on how much resource is used while running the function. Because of the 
+gil we can say it does not change.
+
+## Experiment 2: Testing No-GIL Python
+
+No-GIL version is not production ready yet, it is still in progress. Developers are
+working on implementing changes for all affected main libraries but it's still not completed yet.
+
+### Setup
+
+```bash
+pyenv shell 3.13t
+```
+
+### Running the Same Test
+
+```python
+python main.py
+```
+
+### Results Comparison
+
+```bash
+Python 3.13.11 experimental free-threading build (main, Dec 26 2025, 14:02:06) [GCC 13.3.0]
+
+Single-threaded: 3.741s
+Multi-threaded:  1.114s
+Speedup:         3.36x
+```
+
+## Key Takeaways
+Python GIL is making sure everything is working in a thread-safe way but it also means that it's impossible
+to run the same code in parallel in different threads. That is why they are trying to remove it right now.
+
+This is not the only way to make sure CPU-bound operations can run in parallel. There is also a
+way to do it with subprocesses. It is a little bit more complex to make it work because it is hard to
+share data between different processes.
+
+
+## What's Next
+
+I will try to create a post explaining more about async and parallelism. Also I am planning to
+create a post about different methods to parallelize.
+
+
+---
+
+Let's connect!
