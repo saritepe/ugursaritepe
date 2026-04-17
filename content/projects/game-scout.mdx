@@ -1,19 +1,26 @@
 ---
 title: "Game Scout"
-summary: "Advanced game search and filtering platform with smart categorization and ordering"
+summary: "PlayStation game discovery app focused on niche SEO landing pages, smart filters, and better downstream discovery"
 status: "active"
-startDate: "2024-03-15" 
-lastUpdated: "2025-12-20"
-tech: ["Next.js", "Python", "PostgreSQL", "Playwright"]
+startDate: "2024-03-15"
+lastUpdated: "2026-04-17"
+tech: ["Next.js", "Python", "PostgreSQL", "Playwright", "Umami"]
 demo: "https://game-scout.app"
 featured: true
 futureGoals:
-  - "Actually get some users (seriously, how?)"
-  - "Add semantic search capabilities"
+  - "Turn SEO visitors into people who actually view and compare games"
+  - "Keep improving CTR on zero-click and low-CTR landing pages"
+  - "Add better metadata and schema for game detail pages"
   - "Fix mobile iOS app that's been broken"
   - "Add game price tracking and alerts"
   - "Expand to other platforms like Steam and Epic Games"
 updates:
+  - date: "2026-04-17"
+    description: "Refreshed metadata on zero-click landing pages and fixed mobile discovery page pagination issues"
+  - date: "2026-04-06"
+    description: "Improved downstream discovery on SEO landing pages with top picks, slimmer cards, and Umami conversion attribution"
+  - date: "2026-01-12"
+    description: "Added Umami-based traffic quality tracking, comparison features, and manual pageview fixes to measure SEO traffic better"
   - date: "2025-12-20"
     description: "Added niche category pages, individual game slugs, and metadata improvements for better SEO"
     blogPost: "/blog/game-scout-seo-improvements"
@@ -21,16 +28,19 @@ updates:
     description: "Got first 5 organic clicks from Google Search Console - all from medical games niche page"
     blogPost: "/blog/first-clicks-from-google"
   - date: "2025-09-10"
-    description: "Created a web app with logical filters intead of llm"
+    description: "Created a web app with logical filters instead of llm"
   - date: "2025-08-23"
-    description: "Initial launch with llm wrapper to search games as mobile ios app"
+    description: "Initial launch with llm wrapper to search games as mobile iOS app"
 ---
 
 ## Overview
 
-Game Scout is a tool to search games. Instead of relying just genres, it has 
-AI powered tags, themes and mechanics that lets users to find games. Also included
-smart ranking system that calculates from rate and rate count together.
+Game Scout is a PlayStation game discovery app. Instead of relying only on genres,
+it uses themes, mechanics, player modes, and niche SEO landing pages to help people
+find games that fit a very specific mood or use case.
+
+What started as an AI-heavy idea became a much simpler product: searchable filters,
+curated landing pages, and game detail pages that are easier to ship, test, and improve.
 
 ## The Problem
 
@@ -39,14 +49,20 @@ for "medical games," you might only get games with "medical" in the title,
 missing out on surgery simulators, hospital management games, and health 
 education titles.
 
+The second problem was getting users at all. I spent a long time building features,
+but the real challenge turned out to be acquisition and helping search visitors go
+deeper than one landing page.
+
 ## The Solution
 
 Game Scout uses advanced categorization:
 
-- **Search**: Find tag, theme, mecanics or description
+- **Search**: Find games by tag, theme, mechanics, or description
 - **Ordering**: Order games with weighted rating algorithm
 - **Advanced Filters**: Combine co-op mode, player count, difficulty, and specific mechanics
 - **Plus Mode**: Find games that support specific features like local co-op, split-screen
+- **SEO Landing Pages**: Create narrow pages like medical, crime, detective, and co-op RPG games
+- **Discovery Tracking**: Measure whether search visitors continue to game pages instead of bouncing
 
 ## Key Features
 
@@ -66,6 +82,11 @@ Game Scout uses advanced categorization:
 - Games can belong to multiple categories
 - Genre-blending discovery (find games that mix your favorite styles)
 
+### SEO and Discovery
+- Landing pages target specific PlayStation search intents instead of generic category terms
+- Page metadata is tuned based on Google Search Console impressions, clicks, and CTR
+- Umami tracks search-driven discovery actions so I can see if landing pages lead to deeper browsing
+
 ### Precise Discovery
 Combine multiple filters to find exactly what you want:
 - "4-player local co-op puzzle games"
@@ -79,10 +100,25 @@ Combine multiple filters to find exactly what you want:
 - **Database**: Postgres
 - **Scraping**: Playwright
 - **Tagging**: OpenAI
+- **Analytics**: Umami
+
+## Recent Progress
+
+Since my last Game Scout post on January 5, 2026, the project has moved less in the
+"more features" direction and more in the "find out what actually works" direction.
+
+- In January 2026 I added Umami tracking, scroll depth, time-on-page, and comparison-related events.
+- In April 2026 I improved top landing pages, retargeted weak metadata, and fixed a few mobile UX issues on discovery pages.
+- Search Console for January 15, 2026 to April 14, 2026 showed 132 clicks and 12,462 impressions, with the medical games page still leading.
+- Umami showed that some search visitors now continue into deeper actions like game views, game card clicks, and other SEO discovery events.
 
 ## Current State
 
-The app works and I actually use it myself to find games. But honestly, I have zero other users.
+The app works, I use it myself, and it is finally getting some real search traffic. It is
+still small, but now I have something better than guesses: Search Console shows which pages
+are getting impressions and clicks, and Umami shows whether those visitors actually explore
+the product after landing.
 
-The features are there, search works well, but getting users is a completely different challenge
-that I haven't figured out yet.
+Right now the main challenge is not building more filters. It is improving CTR on the pages
+that already have impressions and making sure those visitors continue to game pages instead of
+leaving immediately.
