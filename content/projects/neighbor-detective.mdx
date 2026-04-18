@@ -1,0 +1,72 @@
+---
+title: "Neighbor Detective"
+summary: "Firefox add-on that shows postcode-level neighborhood statistics for the first 4 digits of a Dutch postcode"
+status: "active"
+startDate: "2026-04-18"
+lastUpdated: "2026-04-18"
+tech: ["Firefox WebExtension", "JavaScript", "HTML", "CSS"]
+demo: "https://addons.mozilla.org/en-US/firefox/addon/neighbor-detective/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search"
+featured: false
+futureGoals:
+  - "Add support for more postcode-related datasets"
+  - "Improve the popup UI so the statistics are easier to scan"
+  - "Consider publishing the same extension for Chrome"
+  - "Add a simple landing page with screenshots and usage notes"
+updates:
+  - date: "2026-04-18"
+    description: "Published the first Firefox add-on version and got it accepted"
+---
+
+## Overview
+
+Neighbor Detective is a small browser add-on that helps me inspect neighborhood
+statistics quickly from a Dutch postcode. The main idea is simple: take the first
+4 digits of a postcode and show useful area-level information without having to
+open separate sites and search manually.
+
+## The Problem
+
+When I want to understand an area, I usually only need a quick first pass. Opening
+different pages, copying a postcode, and checking several statistics one by one is
+slow and breaks the flow.
+
+For many use cases, the first 4 digits of the postcode are already enough to get a
+basic neighborhood picture. I wanted a faster way to get that context directly from
+the browser.
+
+## The Solution
+
+I built a Firefox add-on that focuses on the first 4 digits of a postcode and turns
+that into a lightweight neighborhood lookup tool.
+
+- **Postcode-first flow**: use the first 4 digits as the main input
+- **Quick statistics**: show useful neighborhood-level numbers in one place
+- **Lightweight interaction**: avoid opening multiple tabs for a basic area check
+- **Browser-native usage**: keep the tool simple and available where I already work
+
+## Key Features
+
+### Fast Area Lookup
+- Enter or detect the first 4 postcode digits
+- Show relevant neighborhood statistics immediately
+- Keep the interaction simple enough for repeated daily use
+
+### Lightweight Extension UX
+- Built as a small browser add-on instead of a full web app
+- Focused on speed and clarity over too many filters
+- Easy to install and test directly inside Firefox
+
+## Technical Highlights
+
+- **Extension Platform**: Firefox WebExtension
+- **Frontend**: JavaScript, HTML, and CSS
+- **Product Scope**: small utility focused on one specific lookup job
+
+## Current State
+
+The first version is already published in Firefox Add-ons and has been accepted.
+Right now the project is in the useful-tool stage: narrow scope, clear purpose, and
+good enough to start learning from real usage.
+
+The next step is deciding whether this stays a focused Firefox-only tool or grows
+into a broader postcode research utility with more datasets and better presentation.
