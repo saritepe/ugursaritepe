@@ -1,0 +1,67 @@
+---
+title: "What I Took from KubeCon"
+date: "2026-04-17"
+excerpt: "A few practical things I took from KubeCon around agentic development, MCP servers and RBAC."
+tags: ["kubecon", "ai", "mcp", "rbac"]
+draft: false
+---
+
+Recently I joined KubeCon + CloudNativeCon Europe 2026 in Amsterdam.
+
+Firstly, this is the biggest event I have joined in my life. I was shocked by how big it can be.
+I even got lost in the event center a few times. In total I did 40k steps. 
+
+I would not say I benefited the most from the event as a newbie. On the contrary, I would say I was bad at
+choosing which talk to join. I was even bad at reaching the talks. I missed one observability talk from Grafana.
+When I arrived there, it was already full and I was 5 minutes late.
+
+Even though I suck at it, I think I got a few topics that I can share.
+
+## Why This Topic Stood Out to Me
+
+The biggest topic was obviously AI and agentic development. Of course there is hype. But I
+think I got a few things that are important. Especially seeing changes from across the world.
+How everyone started to work differently. Also I started to think more about the future. 
+It was not that a few prompts changed my life, but instead a few ideas,
+different point of views changed how I think about it.
+
+
+## What I Learned About Agentic Development
+
+Firstly, yes, everyone relies on AI now for development. As a developer, our job is already
+getting affected by it. This is not the hype. I am barely touching code by hand
+anymore. It is more like giving directions, checking, reviewing, and testing.
+
+Instead of getting defensive about agentic development, I should think about it more generally.
+Generally it is better to have speed with reasonable accuracy, if we can guide the agents in the right way
+and restrict them with least privileges.
+
+## Why MCP Servers Felt Important
+
+We have MCP servers now but almost none of them have contributors, they are new tools so they are not developed
+enough to use but at the same time they are standardized for agents.
+
+Personally if I deploy an app I don't want to check
+Argo CD first to see if everything is green, I can tell Claude Code to check. One of the best ways to do this is
+having a good MCP so the agent can understand its capabilities and turn natural language into machine-to-machine language.
+
+## Why RBAC Matters More Than Ever
+
+This actually opens another important subject for everyone. Autonomous deployment, having a sandbox
+that you can define for your agent so it can also test what it wrote, importance of having RBAC on applications.
+Giving least privilege to agents.
+
+This actually should be done even without agentic flow, but in general it is hard to apply. Having least
+privilege means making every app have role-based access and it is not supported by default. Now since
+we have agents doing everything and at the same time we don't know exactly what they will do,
+we can limit their access and let them work for us.
+
+## What I Want to Focus on Next
+
+Right now I am trying to focus on limiting the applications I use. I am trying to create a custom wrapper
+that will have certain functionalities mostly read so I can give full permission to use my own wrapper.
+This is just a temporary solution until having full RBAC capabilities per app.
+
+There is also the option to use MCP gateways until applications have all the capabilities. But so far MCPs
+are new and generally do not have all the capabilities yet. I would like to experiment more with the differences between
+CLI tools and MCP servers. If possible it would be better to use a universal protocol, so I prefer MCP, but we will see.
